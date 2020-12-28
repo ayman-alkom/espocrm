@@ -38,6 +38,8 @@ define('views/modals/array-field-add', 'views/modal', function (Dep) {
 
         fitHeight: true,
 
+        checkedList: [],
+
         data: function () {
             return {
                 optionList: this.options.options,
@@ -50,12 +52,45 @@ define('views/modals/array-field-add', 'views/modal', function (Dep) {
                 var value = $(e.currentTarget).attr('data-value');
                 this.trigger('add', value);
             },
+            'click input[type="checkbox"]': function (e) {
+                var value = $(e.currentTarget).attr('data-value');
+                if (e.target.checked) {
+                    this.checkedList.push(value);
+                } else {
+                    var index = this.checkedList.indexOf(value);
+
+                    if (index !== -1) {
+                        this.checkedList.splice(index, 1);
+                    }
+                }
+
+                if (this.checkedList.length) {
+                    this.enableButton('select');
+                } else {
+                    this.disableButton('select');
+                }
+            },
         },
 
         setup: function () {
             this.header = this.translate('Add Item');
 
-            this.buttonList = [];
+            this.buttonList = [
+                {
+                    name: 'select',
+                    style: 'danger',
+                    label: 'Select',
+                    disabled: true,
+                    onClick: function (dialog) {
+                        this.trigger('add', this.checkedList);
+                    }.bind(this),
+                },
+                {
+                    name: 'cancel',
+                    label: 'Cancel'
+                }
+            ];
+
         },
 
     });
