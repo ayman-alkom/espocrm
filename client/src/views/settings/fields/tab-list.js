@@ -227,26 +227,13 @@ define('views/settings/fields/tab-list', 'views/fields/array', function (Dep) {
             });
         },
 
-        actionAddItem: function () {
-            var options = [];
-
-            this.params.options.forEach(function (item) {
-                if (!~this.selected.indexOf(item)) {
-                    options.push(item);
+        getAddModalOptions: function () {
+            return _.extend(
+                Dep.prototype.getAddModalOptions.call(this),
+                {
+                    noGroups: this.noGroups,
                 }
-            }, this);
-
-            this.createView('addModal', this.addItemModalView, {
-                options: options,
-                translatedOptions: this.translatedOptions,
-                noGroups: this.noGroups,
-            }, function (view) {
-                view.render();
-                this.listenToOnce(view, 'add', function (item) {
-                    this.addValue(item);
-                    view.close();
-                }.bind(this));
-            }.bind(this));
+            );
         },
 
     });
