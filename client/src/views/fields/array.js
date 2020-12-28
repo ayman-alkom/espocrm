@@ -86,7 +86,7 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
             }, this);
 
             this.selected = Espo.Utils.clone(this.model.get(this.name) || []);
-            if (Object.prototype.toString.call(this.selected) !== '[object Array]')    {
+            if (Object.prototype.toString.call(this.selected) !== '[object Array]') {
                 this.selected = [];
             }
 
@@ -111,7 +111,7 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
             if (this.params.isSorted && this.translatedOptions) {
                 this.params.options = Espo.Utils.clone(this.params.options);
                 this.params.options = this.params.options.sort(function (v1, v2) {
-                     return (this.translatedOptions[v1] || v1).localeCompare(this.translatedOptions[v2] || v2);
+                    return (this.translatedOptions[v1] || v1).localeCompare(this.translatedOptions[v2] || v2);
                 }.bind(this));
             }
 
@@ -380,10 +380,10 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
 
                 var style = this.styleMap[item] || 'default';
                 if (this.params.displayAsLabel) {
-                    label = '<span class="label label-md label-'+style+'">' + label + '</span>';
+                    label = '<span class="label label-md label-' + style + '">' + label + '</span>';
                 } else {
                     if (style && style != 'default') {
-                        label = '<span class="text-'+style+'">' + label + '</span>';
+                        label = '<span class="text-' + style + '">' + label + '</span>';
                     }
                 }
                 return label;
@@ -396,8 +396,8 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
                 if (this.displayAsLabel) {
                     itemClassName += ' multi-enum-item-label-container';
                 }
-                return '<div class="'+itemClassName+'">' +
-                    list.join('</div><div class="'+itemClassName+'">') + '</div>';
+                return '<div class="' + itemClassName + '">' +
+                    list.join('</div><div class="' + itemClassName + '">') + '</div>';
             } else if (this.displayAsLabel) {
                 return list.join(' ');
             } else {
@@ -428,8 +428,8 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
                 }
             }
             var html = '<div class="list-group-item" data-value="' + valueSanitized + '" style="cursor: default;">' + label +
-            '&nbsp;<a href="javascript:" class="pull-right" data-value="' + valueSanitized + '" data-action="removeValue"><span class="fas fa-times"></a>' +
-            '</div>';
+                '&nbsp;<a href="javascript:" class="pull-right" data-value="' + valueSanitized + '" data-action="removeValue"><span class="fas fa-times"></a>' +
+                '</div>';
 
             return html;
         },
@@ -463,7 +463,7 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
 
             if (this.params.isSorted && this.translatedOptions) {
                 list = list.sort(function (v1, v2) {
-                     return (this.translatedOptions[v1] || v1).localeCompare(this.translatedOptions[v2] || v2);
+                    return (this.translatedOptions[v1] || v1).localeCompare(this.translatedOptions[v2] || v2);
                 }.bind(this));
             }
 
@@ -601,7 +601,7 @@ define('views/fields/array', ['views/fields/base', 'lib!Selectize'], function (D
                     }
 
                     items.forEach(function (item) {
-                    this.addValue(item);
+                        this.addValue(item);
                     }.bind(this));
                     view.close();
                 }.bind(this));
