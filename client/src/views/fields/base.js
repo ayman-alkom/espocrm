@@ -701,6 +701,8 @@ define('views/fields/base', 'view', function (Dep) {
         },
 
         validate: function () {
+            if (this.disabled || this.readOnly) return false;
+
             for (var i in this.validations) {
                 var method = 'validate' + Espo.Utils.upperCaseFirst(this.validations[i]);
                 if (this[method].call(this)) {
